@@ -1,0 +1,11 @@
+{
+  "name": "umoocs-platform-agent",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node tests/regression.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

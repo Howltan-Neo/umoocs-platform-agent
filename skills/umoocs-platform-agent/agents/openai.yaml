@@ -1,0 +1,6 @@
+interface:
+  display_name: "UMOOCs 平台学习智能体"
+  short_description: "识别多课程任务、勾选AI分工，适配视频播放与作业测验并核验真实提交和进度"
+  default_prompt: "使用 $umoocs-platform-agent 检查我的课程，先显示任务勾选面板，再按授权处理并核验结果。"
+policy:
+  allow_implicit_invocation: true

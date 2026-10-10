@@ -16,7 +16,7 @@
  await call('task-picker.js',{manifest:m});assert.equal(await page.locator('#unipus-ai-task-picker input:checked').count(),2);
  assert.equal(await page.getByRole('checkbox',{name:/Week A作业交给AI/}).count(),1);
  await page.getByRole('button',{name:'全选单元项目',exact:true}).click();assert.equal(await page.locator('#unipus-ai-task-picker #final').isChecked(),false);assert.equal(await page.locator('#unipus-ai-task-picker #popups').isChecked(),false);
- await page.screenshot({path:path.join(base,'assets/task-picker-preview.png')});
+ await page.screenshot({path:path.join(base,'assets/task-picker-preview-utf8.png')});
  await page.getByRole('button',{name:'确认任务分工',exact:true}).click();const chosen=await call('task-picker.js',{action:'read'});assert.equal(chosen.status,'confirmed');
  assert.equal(chosen.scope.assignments['8004'],'ai');assert.equal(chosen.scope.assignments['8005'],'ai');assert.equal(chosen.scope.assignments['8006'],'manual');assert.equal(chosen.scope.assignments['8007'],'manual');assert.equal(chosen.scope.video.answerPopups,false);assert.equal(chosen.scope.repairNativeNotifications,true);
  const check=eval(read('scripts/task-scope.js'));assert.equal(check({manifest:m,scope:chosen.scope,taskId:'8005'}).decision,'ai');assert.equal(check({manifest:m,scope:chosen.scope,taskId:'8007'}).decision,'manual');assert.equal(check({manifest:m,scope:chosen.scope,taskId:'8006'}).decision,'blocked');assert.throws(()=>check({manifest:m,scope:{...chosen.scope,courseId:'999'},taskId:'8005'}));assert.throws(()=>check({manifest:{...m,fingerprint:'changed'},scope:chosen.scope,taskId:'8004'}));
@@ -34,5 +34,6 @@
  await assert.rejects(call('completion-notification.js',{}));await assert.rejects(call('completion-notification.js',{authorized:true,manifest:m,scope:chosen.scope,taskId:'8007'}));
  await browser.close();console.log('PASS: syntax; dynamic catalog/groups; Test document; final exclusion; defaults; scope/fingerprint; stacked popup read/select/confirm; account guard; selected-video skip; dragging; repair rejection guards');
 })().catch(e=>{console.error(e);process.exit(1)});
+
 
 
